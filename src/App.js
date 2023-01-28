@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import Header from './Header';
+import Home from './Home';
+import DisplayContent from './DisplayContent'
+import SignInPage from './SignInPage';
+import SignUpPage from './SignUpPage';
+import PlaceOrder from './PlaceOrderContent/PlaceOrder.js';
+import {BrowserRouter as Router,Routes, Route} from 'react-router-dom'
+import Checkout from './Checkout'
+import CartContextProvider from './CartContext'
+
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+      <CartContextProvider >
+        <Routes>
+
+          <Route path="/" element={[<Header />,<Home />]} />
+          <Route path="/checkout" element={[<Header />,<Checkout />]} />
+          <Route path="/displaycontent" element={[<Header />,<DisplayContent />]} />
+          <Route path="/signInPage" element={[<SignInPage />]} />
+          <Route path="/signUpPage" element={[<SignUpPage />]} />
+          <Route path="/order/:id" element={[<Header />,<PlaceOrder />]} />
+
+        </Routes>
+        {/* <DisplayContent /> */}
+        {/* <SignInPage /> */}
+        {/* <SignUpPage /> */}
+        {/* <PlaceOrder /> */}
+        </CartContextProvider >
+      </div>
+    </Router>
   );
 }
 
